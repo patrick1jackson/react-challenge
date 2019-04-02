@@ -19,12 +19,22 @@ class WelcomeForm extends React.PureComponent {
     const { handleSubmit } = this.props;
 
     return (
-      <form className="flex flex-column">
-        {/* TODO: Add elements to form to collect user input */}
+      <form onSubmit= {handleSubmit} className="flex flex-column">
+        
         <Field
-          name="???"
+          name="firstname"
           component={RFTextField}
-          label="???"
+          label="First Name"
+        />
+        <Field
+          name="lastname"
+          component={RFTextField}
+          label="Last Name"
+        />
+        <Field
+          name="username"
+          component={RFTextField}
+          label="User Name"
         />
         <div className="center mt3">
           <Button variant="contained" color="primary" type="submit">

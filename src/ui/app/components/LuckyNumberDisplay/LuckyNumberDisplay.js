@@ -23,7 +23,7 @@ class LuckyNumberDisplay extends React.PureComponent {
 
 // TODO: Add PropTypes
 LuckyNumberDisplay.propTypes = {
-
+  //dispatch: PropTypes.func.isRequired
 };
 
 export default LuckyNumberDisplay;
