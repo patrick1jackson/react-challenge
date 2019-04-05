@@ -15,18 +15,28 @@ import { push } from 'react-router-redux';
 import request from 'utils/request';
 
 import { DISPATCH_ACTIONS } from './constants';
+import { returnLuckyNumber, failedToGetCall  } from './actions';
 
 export function* getLuckyNumber({ username }) {
   // TODO: What port is the service layer running on again?
-  const requestUrl = 'http://localhost:???/lucky-number';
+  const requestUrl = 'http://localhost:1337/lucky-number?username=' + username;
 
   try {
     const result = yield call(request, requestUrl);
-
-    // TODO: Do stuff with the result
+    // once you get result update state by sending to reducer
+    yield put(returnLuckyNumber(result.luckyNumber, username));
+		
+		//resolves the promise in redux form
+    yield call(resolve);
+    yield delay(5000);
+    
   } catch (err) {
-    // TODO: Bonus points for some error handling
+    console.log("in error")
+    //yield put(failedToGetCall(err));
+    //yield put(push("/failure"));
   }
+
+  yield put(push("/lucky"));
 }
 
 export default function* sagaFunction() {

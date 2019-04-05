@@ -13,4 +13,19 @@ export function getLuckyNumber(username) {
   };
 }
 
+export function returnLuckyNumber(luckyNumber, username) {
+  return {
+    type: DISPATCH_ACTIONS.RETURN_LUCKY_NUMBER,
+    luckyNumber,
+    username
+  };
+}
+
+export function failedToGetCall(error) {
+  return {
+    type: "FAIL",
+    error
+  };
+}
+
 // TODO: Add more actions if needed

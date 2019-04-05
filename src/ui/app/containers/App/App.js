@@ -12,6 +12,7 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import Welcome from 'containers/Welcome/Welcome';
 import LuckyNumber from 'containers/LuckyNumber/LuckyNumber';
 import NotFound from 'containers/NotFound/NotFound';
+import Failure from 'components/Failure/Failure';
 
 const App = () => (
   <div className="app-wrapper">
@@ -25,6 +26,7 @@ const App = () => (
     <Switch>
       <Route exact path="/" component={Welcome} />
       <Route path="/lucky" component={LuckyNumber} />
+      <Route path="/failure" component={Failure} />
       <Route path="" component={NotFound} />
     </Switch>
   </div>

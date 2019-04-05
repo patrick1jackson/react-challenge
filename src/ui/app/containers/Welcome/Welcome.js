@@ -17,7 +17,8 @@ import injectReducer from 'utils/injectReducer';
 
 import WelcomeForm from 'components/WelcomeForm/WelcomeForm';
 
-import { CONTAINER_KEY } from '../constants';
+import { DISPATCH_ACTIONS, CONTAINER_KEY } from '../constants';
+
 import saga from '../saga';
 import reducer from '../reducer';
 
@@ -34,16 +35,22 @@ class Welcome extends React.PureComponent {
    * @see https://redux-form.com/7.4.2/docs/gettingstarted.md/#step-4-of-4-reacting-to-submit
    * @param {*} values An immutable map of the Redux Form values
    */
-  submit(values) {
+  submit = (values) => {
     const { dispatch } = this.props;
+    const username = values.get('username');
+    
 
-    // TODO: Get the form values and invoke the service layer
+    // Get the form values and invoke the service layer
+    return new Promise((resolve, reject) => {
+			dispatch({
+				type: DISPATCH_ACTIONS.GET_LUCKY_NUMBER,
+				username,
+				resolve,
+				reject
+			});
+		})
     
-    
-    dispatch({
-      type: 'FETCH_DATA',
-      values
-    })
+     
   }
 
   render() {

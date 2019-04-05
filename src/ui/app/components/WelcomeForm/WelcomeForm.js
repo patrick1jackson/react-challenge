@@ -19,7 +19,8 @@ class WelcomeForm extends React.PureComponent {
     const { handleSubmit } = this.props;
 
     return (
-      <form onSubmit= {handleSubmit} className="flex flex-column">
+      //handleSubmit works the same without this.props.onSubmit
+      <form onSubmit={handleSubmit(this.props.onSubmit)} className="flex flex-column">
         
         <Field
           name="firstname"
@@ -50,8 +51,29 @@ WelcomeForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired
 };
 
-// TODO: Add validation
+//validates that value is entered in text fields
+const validate = values => {
+  console.log(values);
+  const { firstname, lastname, username } = values;
+  
+	const error = {};
+	if(!values.get('firstname') || values.get('firstname').trim() ===''){
+		error.firstname = 'firstname Required';
+  }
+  
+  if(!values.get('lastname') || values.get('lastname').trim() ===''){
+		error.lastname = 'lastname Required';
+  }
+  if(!values.get('username') || values.get('username').trim() ===''){
+		error.username = 'username Required';
+  }
+		
+		return error;
+}
+
+
 // @see https://redux-form.com/7.4.2/docs/api/reduxform.md/
 export default reduxForm({
   form: 'welcome',
+  validate
 })(WelcomeForm);
